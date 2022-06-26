@@ -1,6 +1,7 @@
 import create from "zustand";
-import { httpClient } from "../infra/HttpClient";
-import { IOrder } from "./types";
+
+import { fetchOrders } from "@/shared/services/OrdersAPI";
+import { IOrder } from "@/features/orders/types";
 
 interface Store {
   orders: IOrder[];
@@ -9,14 +10,14 @@ interface Store {
   fetchOrders: () => void;
 }
 
-export const useStore = create<Store>((set) => ({
+export const useOrders = create<Store>((set) => ({
   orders: [],
   addOrder: (data) =>
     set((state) => ({ ...state, orders: [...state.orders, data] })),
   resetOrders: () => set((state) => ({ ...state, orders: [] })),
   fetchOrders: async () => {
     try {
-      const response = await httpClient.get<IOrder[]>("/orders");
+      const response = await fetchOrders();
       set((state) => ({
         ...state,
         orders: [...state.orders, ...response.data],

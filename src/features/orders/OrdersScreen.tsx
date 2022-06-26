@@ -1,7 +1,6 @@
-import OrderForm from "./OrderForm";
-import OrderList from "./OrderList";
+import { OrderForm, OrderList } from "@/features/orders/components";
 
-const OrdersScreen = () => {
+export default function OrdersScreen() {
   return (
     <div className="bg-slate-100 rounded-md p-4 flex flex-col gap-x-10">
       <h2 className="text-3xl mb-4 font-bold text-center text-purple-800">
@@ -12,6 +11,4 @@ const OrdersScreen = () => {
       <OrderList />
     </div>
   );
-};
-
-export default OrdersScreen;
+}

@@ -1,9 +1,12 @@
 import { useForm } from "react-hook-form";
-import { IOrder } from "./types";
-import { useStore } from "./useOrders";
 
-const OrderForm = () => {
-  const addOrder = useStore((state) => state.addOrder);
+import { HelperText, Button } from "@/shared/components";
+
+import { IOrder } from "@/features/orders/types";
+import { useOrders } from "@/features/orders/useOrders";
+
+export default function OrderForm() {
+  const addOrder = useOrders((state) => state.addOrder);
   const {
     register,
     handleSubmit,
@@ -30,9 +33,7 @@ const OrderForm = () => {
             {...register("description", { required: true })}
           />
           {errors.description && (
-            <span className="text-sm text-red-500 font-semibold">
-              This field is required
-            </span>
+            <HelperText>This field is required</HelperText>
           )}
         </div>
         <div className="my-6">
@@ -48,21 +49,15 @@ const OrderForm = () => {
             className="border py-2 pl-4 w-full rounded-sm outline-purple-300"
             {...register("amount", { required: true })}
           />
-          {errors.amount && (
-            <span className="text-sm text-red-500 font-semibold">
-              This field is required
-            </span>
-          )}
+          {errors.amount && <HelperText>This field is required</HelperText>}
         </div>
-        <button
+        <Button
           type="submit"
           className="bg-purple-600 my-6 p-2 text-white w-full rounded-md hover:bg-purple-800 focus:bg-purple-800 outline-none "
         >
-          ENVIAR
-        </button>
+          SUBMIT
+        </Button>
       </form>
     </div>
   );
-};
-
-export default OrderForm;
+}

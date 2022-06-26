@@ -1,4 +1,4 @@
-import OrdersScreen from "./orders";
+import OrdersScreen from "@/features/orders";
 
 const App = () => {
   return (
