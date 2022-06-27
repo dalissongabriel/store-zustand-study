@@ -1,6 +1,6 @@
-import { rest } from "msw";
-import { baseURL } from "@/shared/services/HttpClient";
+import { baseURL } from "@/infra/HttpClient";
 import orderListJson from "@/mocks/jsons/orders-list-valid.json";
+import { rest } from "msw";
 
 const OrdersHandlers = [
   rest.get(`${baseURL}/orders`, (_, res, ctx) => {

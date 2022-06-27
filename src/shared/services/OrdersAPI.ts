@@ -1,5 +1,5 @@
-import { httpClient } from "@/shared/services/HttpClient";
-import { IOrder } from "@/shared/types";
+import { httpClient } from "@/infra/HttpClient";
+import { IOrder } from "@/shared/types/Orders";
 
 async function fetchOrders() {
   return httpClient.get<IOrder[]>("/orders");
