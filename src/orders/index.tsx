@@ -1,4 +1,5 @@
-import { OrderForm, OrderList } from "@/features/orders/components";
+import OrderForm from "@/orders/OrderForm";
+import OrderList from "@/orders/OrderList";
 
 export default function OrdersScreen() {
   return (

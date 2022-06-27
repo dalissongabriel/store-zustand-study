@@ -1,0 +1,18 @@
+[
+  {
+    "description": "Foo",
+    "amount": 1
+  },
+  {
+    "description": "Bar",
+    "amount": 2
+  },
+  {
+    "description": "Lorem",
+    "amount": 3
+  },
+  {
+    "description": "Ipsum",
+    "amount": 4
+  }
+]

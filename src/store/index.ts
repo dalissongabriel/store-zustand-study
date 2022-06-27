@@ -1,7 +1,7 @@
 import create from "zustand";
 
 import OrdersAPI from "@/shared/services/OrdersAPI";
-import { IOrder } from "@/features/orders/types";
+import { IOrder } from "@/shared/types";
 
 interface OrdersState {
   orders: IOrder[];
@@ -10,7 +10,7 @@ interface OrdersState {
   fetchOrders: () => void;
 }
 
-export const useOrders = create<OrdersState>((set) => ({
+export const useStore = create<OrdersState>((set) => ({
   // initial state
   orders: [],
   // "reducers"

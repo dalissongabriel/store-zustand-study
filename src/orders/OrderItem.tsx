@@ -1,4 +1,4 @@
-import { IOrder } from "@/features/orders/types";
+import { IOrder } from "@/shared/types";
 
 interface Props {
   item: IOrder;

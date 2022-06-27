@@ -1,35 +1,30 @@
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 
-import { HelperText, Button } from "@/shared/components";
-
-import { IOrder } from "@/features/orders/types";
-import { useOrders } from "@/features/orders/useOrders";
+import { HelperText, Button, InputLabel } from "@/shared/components";
+import { IOrder } from "@/shared/types";
+import { useStore } from "@/store";
 
 export default function OrderForm() {
-  const addOrder = useOrders((state) => state.addOrder);
+  const addOrder = useStore((state) => state.addOrder);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IOrder>();
 
-  function onSubmit(data: IOrder) {
+  const submitHandler: SubmitHandler<IOrder> = (data) => {
     addOrder(data);
-  }
+  };
 
   return (
     <div className="bg-white p-6">
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <form onSubmit={handleSubmit(submitHandler)} noValidate>
         <div className="mb-6">
-          <label htmlFor="description" className="block text-gray-700">
-            Description:
-          </label>
-
+          <InputLabel htmlFor="description">Description:</InputLabel>
           <textarea
             id="description"
             className="border py-2 pl-4 w-full rounded-sm outline-purple-300"
             placeholder="Order description ..."
-            required
             {...register("description", { required: true })}
           />
           {errors.description && (
@@ -37,9 +32,7 @@ export default function OrderForm() {
           )}
         </div>
         <div className="my-6">
-          <label htmlFor="amount" className="block text-gray-700">
-            Amount:
-          </label>
+          <InputLabel htmlFor="amount">Amount:</InputLabel>
           <input
             type="number"
             id="amount"
@@ -51,12 +44,7 @@ export default function OrderForm() {
           />
           {errors.amount && <HelperText>This field is required</HelperText>}
         </div>
-        <Button
-          type="submit"
-          className="bg-purple-600 my-6 p-2 text-white w-full rounded-md hover:bg-purple-800 focus:bg-purple-800 outline-none "
-        >
-          SUBMIT
-        </Button>
+        <Button type="submit">SUBMIT</Button>
       </form>
     </div>
   );
